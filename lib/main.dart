@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoplist/app/interface/screens/main_screen.dart';
 
 import 'app/interface/screens/home_screen.dart';
 
@@ -12,11 +13,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Organizador de Compras',
-      home: HomeScreen(),
+      home: const MainScreen(),
       routes: {},
+      theme: ThemeData(
+        fontFamily: 'Concert One',
+      ),
     );
   }
 }
