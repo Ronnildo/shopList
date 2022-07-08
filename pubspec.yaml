@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   drop_shadow_image: ^0.9.1
   drop_shadow: any
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:
@@ -89,5 +90,9 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+    - family: Concert One
+      fonts:
+        - asset: assets/fonts/ConcertOne-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
