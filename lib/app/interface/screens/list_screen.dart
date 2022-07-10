@@ -58,19 +58,25 @@ class _ListScreenState extends State<ListScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const <Widget>[
                         Text(
                           'Mês',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(
+                              color: Colors.grey,
+                          ),
                         ),
+                        Icon(Icons.calendar_month_outlined, color: Colors.black,),
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const <Widget> [
                         Text(
                           'Data',
                           style: TextStyle(color: Colors.grey),
                         ),
+                        Icon(Icons.edit_calendar_outlined, color: Colors.black,),
                       ],
                     ),
                   ],
