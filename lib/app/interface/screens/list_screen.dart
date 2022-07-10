@@ -25,6 +25,66 @@ class _ListScreenState extends State<ListScreen> {
           ),
         ),
       ),
+      backgroundColor: const Color(0xFF89CDB2),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            const SizedBox(
+              height: 30.0,
+            ),
+            Container(
+              alignment: Alignment.topCenter,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+              ),
+              height: 50.0,
+              color: const Color(0xFF4A9777),
+              child: const Text(
+                'Criar Lista',
+                style: TextStyle(
+                  fontSize: 40.0,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
+              height: 300.0,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget> [
+                    Row(
+                      children: const <Widget>[
+                        Text(
+                          'Mês',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: const <Widget> [
+                        Text(
+                          'Data',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color(0xFF4A9777),
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
