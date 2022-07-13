@@ -14,83 +14,84 @@ class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: const Color(0xFF4A9777),
-        title: const Text(
-          'Item List',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 40,
+      backgroundColor: const Color(0xFF89CDB2),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Row(
+                children: const <Widget>[
+                  Icon(Icons.arrow_back),
+                ],
+              ),
+              const Text(
+                'Julho',
+                style: TextStyle(
+                  fontSize: 30.0,
+                ),
+              ),
+              const SizedBox(
+                height: 15.0,
+              ),
+              const Text(
+                '27 Jul 2022',
+                style: TextStyle(
+                  fontSize: 15.0,
+                ),
+              ),
+              const SizedBox(
+                height: 25.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget>[
+                  Text(
+                    'Carnes e Frios',
+                    style: TextStyle(fontSize: 15.0),
+                  ),
+                  Icon(Icons.expand_less),
+                ],
+              ),
+              Container(
+
+              ),
+            ],
           ),
         ),
-      ),
-      backgroundColor: const Color(0xFF89CDB2),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const SizedBox(
-              height: 30.0,
-            ),
-            Container(
-              alignment: Alignment.topCenter,
-              margin: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-              ),
-              height: 50.0,
-              color: const Color(0xFF4A9777),
-              child: const Text(
-                'Criar Lista',
-                style: TextStyle(
-                  fontSize: 40.0,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20.0),
-              height: 300.0,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const <Widget>[
-                        Text(
-                          'Mês',
-                          style: TextStyle(
-                              color: Colors.grey,
-                          ),
-                        ),
-                        Icon(Icons.calendar_month_outlined, color: Colors.black,),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const <Widget> [
-                        Text(
-                          'Data',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        Icon(Icons.edit_calendar_outlined, color: Colors.black,),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: const Color(0xFF4A9777),
-        child: const Icon(Icons.add),
       ),
     );
   }
 }
+
+// class ChecarCaixa extends StatefulWidget {
+//   const ChecarCaixa({Key? key, required this.text}) : super(key: key);
+//
+//   final Text text;
+//   final bool checado = false;
+//
+//   @override
+//   State<ChecarCaixa> createState() => _ChecarCaixaState();
+// }
+//
+// class _ChecarCaixaState extends State<ChecarCaixa> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: CheckboxListTile(
+//         title: const Text(
+//           'text',
+//           style: TextStyle(fontSize: 15.0),
+//         ),
+//         controlAffinity: ListTileControlAffinity.leading,
+//         onChanged: (bool? value) {
+//           setState(() {
+//             checado = value!;
+//           });
+//         }, value: null,
+//       ),
+//     );
+//   }
+// }
+
