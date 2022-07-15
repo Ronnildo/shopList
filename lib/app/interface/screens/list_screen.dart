@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:drop_shadow/drop_shadow.dart';
-import 'package:shoplist/app/interface/screens/home_screen.dart';
-import 'package:shoplist/app/interface/screens/main_screen.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key}) : super(key: key);
@@ -56,27 +53,33 @@ class _ListScreenState extends State<ListScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const <Widget>[
                         Text(
                           'Mês',
                           style: TextStyle(
-                              color: Colors.grey,
+                            color: Colors.grey,
                           ),
                         ),
-                        Icon(Icons.calendar_month_outlined, color: Colors.black,),
+                        Icon(
+                          Icons.calendar_month_outlined,
+                          color: Colors.black,
+                        ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const <Widget> [
+                      children: const <Widget>[
                         Text(
                           'Data',
                           style: TextStyle(color: Colors.grey),
                         ),
-                        Icon(Icons.edit_calendar_outlined, color: Colors.black,),
+                        Icon(
+                          Icons.edit_calendar_outlined,
+                          color: Colors.black,
+                        ),
                       ],
                     ),
                   ],

@@ -1,6 +1,5 @@
 import 'package:drop_shadow/drop_shadow.dart';
 import 'package:flutter/material.dart';
-import 'package:shoplist/app/interface/screens/register_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

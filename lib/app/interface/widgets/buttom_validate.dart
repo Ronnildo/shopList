@@ -16,7 +16,7 @@ class ButtomValidate extends StatelessWidget {
       child: Icon(
         icon,
         size: 30,
-        color: Color(0xFFFAFDFB),
+        color: const Color(0xFFFAFDFB),
       ),
     );
   }
