@@ -10,7 +10,7 @@ class PopUpInsertList extends StatefulWidget {
 }
 
 class _PopUpInsertListState extends State<PopUpInsertList> {
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   void voltar() {
     setState(() {

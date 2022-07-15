@@ -1,7 +1,4 @@
-import 'package:drop_shadow/drop_shadow.dart';
 import 'package:flutter/material.dart';
-import 'package:shoplist/app/interface/screens/main_screen.dart';
-import 'package:shoplist/app/interface/widgets/card_reuse.dart';
 
 class RegiterScreen extends StatefulWidget {
   const RegiterScreen({Key? key}) : super(key: key);
