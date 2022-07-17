@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:drop_shadow/drop_shadow.dart';
-import 'package:shoplist/app/interface/screens/home_screen.dart';
-import 'package:shoplist/app/interface/screens/main_screen.dart';
-import 'package:shoplist/app/interface/widgets/checkbox_state.dart';
 import 'package:shoplist/app/interface/widgets/popup.dart';
 
 class ListScreen extends StatefulWidget {
