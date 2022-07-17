@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:drop_shadow/drop_shadow.dart';
 import 'package:shoplist/app/interface/screens/home_screen.dart';
 import 'package:shoplist/app/interface/screens/main_screen.dart';
+import 'package:shoplist/app/interface/widgets/checkbox_state.dart';
+import 'package:shoplist/app/interface/widgets/popup.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class _ListScreenState extends State<ListScreen> {
       backgroundColor: const Color(0xFF89CDB2),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -44,54 +46,103 @@ class _ListScreenState extends State<ListScreen> {
               const SizedBox(
                 height: 25.0,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Text(
-                    'Carnes e Frios',
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Icon(Icons.expand_less),
-                ],
+              Partitions(
+                sectionName: 'Carnes e Frios',
+                teste: ListView(
+                  children: [
+                    ChecarCaixa(
+                      title: 'Programa',
+                    ),
+                    ChecarCaixa(title: 'programa 2'),
+                  ],
+                ),
               ),
-              Container(
-
+              Partitions(
+                sectionName: 'Bebidas',
+                teste: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ChecarCaixa(title: 'retorno');
+                  },
+                ),
+              ),
+              Partitions(
+                sectionName: 'Higiene Pessoal',
+                teste: ListView.builder(
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int index) {
+                  return ChecarCaixa(title: 'Macbook');
+                }),
               ),
             ],
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromRGBO(74, 151, 119, 1),
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const PopUpInsertList()));
+        },
+      ),
     );
   }
 }
 
-// class ChecarCaixa extends StatefulWidget {
-//   const ChecarCaixa({Key? key, required this.text}) : super(key: key);
-//
-//   final Text text;
-//   final bool checado = false;
-//
-//   @override
-//   State<ChecarCaixa> createState() => _ChecarCaixaState();
-// }
-//
-// class _ChecarCaixaState extends State<ChecarCaixa> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: CheckboxListTile(
-//         title: const Text(
-//           'text',
-//           style: TextStyle(fontSize: 15.0),
-//         ),
-//         controlAffinity: ListTileControlAffinity.leading,
-//         onChanged: (bool? value) {
-//           setState(() {
-//             checado = value!;
-//           });
-//         }, value: null,
-//       ),
-//     );
-//   }
-// }
+class Partitions extends StatelessWidget {
+  const Partitions({Key? key, required this.sectionName, required this.teste})
+      : super(key: key);
+  final String sectionName;
+  final Widget teste;
 
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              sectionName,
+              style: const TextStyle(fontSize: 15.0),
+            ),
+            const Icon(Icons.expand_less),
+          ],
+        ),
+        Container(
+          color: Colors.white,
+          height: 100.0,
+          child: teste,
+        ),
+      ],
+    );
+  }
+}
+
+class ChecarCaixa extends StatefulWidget {
+  ChecarCaixa({Key? key, required this.title, this.checado = false})
+      : super(key: key);
+
+  bool checado;
+  final String title;
+
+  @override
+  State<ChecarCaixa> createState() => _ChecarCaixaState();
+}
+
+class _ChecarCaixaState extends State<ChecarCaixa> {
+  @override
+  Widget build(BuildContext context) {
+    return CheckboxListTile(
+      activeColor: const Color(0xFF89CDB2),
+      controlAffinity: ListTileControlAffinity.leading,
+      title: Text(
+        widget.title,
+        style: const TextStyle(fontSize: 15.0),
+      ),
+      value: widget.checado,
+      onChanged: (value) => setState(() => widget.checado = value!),
+    );
+  }
+}
