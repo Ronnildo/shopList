@@ -1,3 +1,4 @@
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/interface/widgets/card_reuse.dart';
 
@@ -11,6 +12,30 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  DeviceInfoPlugin deviceInfo =
+      DeviceInfoPlugin(); // instantiate device info plugin
+  AndroidDeviceInfo? androidDeviceInfo;
+
+  String? host, id, hardware, model, androidid;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDeviceinfo();
+  }
+
+  void getDeviceinfo() async {
+    androidDeviceInfo = await deviceInfo
+        .androidInfo; // instantiate Android Device Infoformation
+    setState(() {
+      host = androidDeviceInfo?.host;
+      id = androidDeviceInfo?.id;
+      hardware = androidDeviceInfo?.hardware;
+      model = androidDeviceInfo?.model;
+      androidid = androidDeviceInfo?.androidId;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
