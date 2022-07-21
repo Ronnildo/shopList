@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoplist/app/interface/widgets/buttom_validate.dart';
+import 'package:shoplist/app/interface/widgets/components/buttom_validate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PopUpInsertList extends StatefulWidget {

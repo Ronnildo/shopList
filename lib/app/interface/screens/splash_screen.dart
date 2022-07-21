@@ -15,13 +15,13 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return SplashScreenView(
       navigateRoute: const MainScreen(),
-      duration: 10000,
+      duration: 5000,
       imageSize: 260,
       imageSrc: "assets/images/shopping_app.png",
       text: "ShopList",
       textType: TextType.ColorizeAnimationText,
       textStyle: const TextStyle(
-        fontSize: 40.0,
+        fontSize: 80.0,
       ),
       colors: const [
         Colors.black,

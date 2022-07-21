@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoplist/app/interface/widgets/popup_list.dart';
+import 'package:shoplist/app/interface/widgets/components/popup_list.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key}) : super(key: key);

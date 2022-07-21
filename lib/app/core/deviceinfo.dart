@@ -16,7 +16,6 @@ class _TestState extends State<Test> {
   String? host, id, hardware, model, androidid;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getDeviceinfo();
   }
@@ -37,7 +36,7 @@ class _TestState extends State<Test> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Get Device Info in Flutter"),
+        title: const Text("Get Device Info in Flutter"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
