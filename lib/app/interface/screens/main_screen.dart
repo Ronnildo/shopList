@@ -1,8 +1,7 @@
-import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
-import 'package:shoplist/app/interface/widgets/card_reuse.dart';
+import 'package:shoplist/app/interface/widgets/ui/listar_listas.dart';
 
-import '../widgets/popup_list.dart';
+import '../widgets/components/popup_list.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -12,30 +11,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  DeviceInfoPlugin deviceInfo =
-      DeviceInfoPlugin(); // instantiate device info plugin
-  AndroidDeviceInfo? androidDeviceInfo;
-
-  String? host, id, hardware, model, androidid;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getDeviceinfo();
-  }
-
-  void getDeviceinfo() async {
-    androidDeviceInfo = await deviceInfo
-        .androidInfo; // instantiate Android Device Infoformation
-    setState(() {
-      host = androidDeviceInfo?.host;
-      id = androidDeviceInfo?.id;
-      hardware = androidDeviceInfo?.hardware;
-      model = androidDeviceInfo?.model;
-      androidid = androidDeviceInfo?.androidId;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +29,31 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: const Color(0xFF4A9777),
       ),
       backgroundColor: const Color(0xFF89CDB2),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Column(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.0),
+        child: ListarListas(),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 30.0,
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) => const PopUpInsertList());
+          },
+          backgroundColor: const Color(0xFF4A9777),
+          elevation: 10,
+          hoverElevation: 50,
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
+
+              /*Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -117,24 +114,4 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
           ],
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 30.0,
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (context) => const PopUpInsertList());
-          },
-          backgroundColor: const Color(0xFF4A9777),
-          elevation: 10,
-          hoverElevation: 50,
-          child: const Icon(Icons.add),
-        ),
-      ),
-    );
-  }
-}
+        ),*/
