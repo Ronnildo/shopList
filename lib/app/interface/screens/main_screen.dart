@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/interface/widgets/card_reuse.dart';
+import 'package:shoplist/app/interface/widgets/popup_list.dart';
 
 import '../widgets/popup_list.dart';
 

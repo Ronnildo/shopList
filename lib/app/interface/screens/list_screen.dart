@@ -15,7 +15,7 @@ class _ListScreenState extends State<ListScreen> {
       backgroundColor: const Color(0xFF89CDB2),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -32,12 +32,6 @@ class _ListScreenState extends State<ListScreen> {
               ),
               const SizedBox(
                 height: 15.0,
-              ),
-              const Text(
-                '27 Jul 2022',
-                style: TextStyle(
-                  fontSize: 15.0,
-                ),
               ),
               const SizedBox(
                 height: 25.0,
@@ -107,7 +101,10 @@ class Partitions extends StatelessWidget {
           ],
         ),
         Container(
-          color: Colors.white,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Colors.white,
+          ),
           height: 100.0,
           child: teste,
         ),
@@ -130,15 +127,17 @@ class ChecarCaixa extends StatefulWidget {
 class _ChecarCaixaState extends State<ChecarCaixa> {
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      activeColor: const Color(0xFF89CDB2),
-      controlAffinity: ListTileControlAffinity.leading,
-      title: Text(
-        widget.title,
-        style: const TextStyle(fontSize: 15.0),
+    return Material(
+      child: CheckboxListTile(
+        activeColor: const Color(0xFF89CDB2),
+        controlAffinity: ListTileControlAffinity.leading,
+        title: Text(
+          widget.title,
+          style: const TextStyle(fontSize: 15.0),
+        ),
+        value: widget.checado,
+        onChanged: (value) => setState(() => widget.checado = value!),
       ),
-      value: widget.checado,
-      onChanged: (value) => setState(() => widget.checado = value!),
     );
   }
 }
