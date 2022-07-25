@@ -2,7 +2,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/core/parametros.dart';
 import 'package:shoplist/app/interface/widgets/components/card_reuse.dart';
-import 'package:shoplist/app/repositorio/repositoriocell.dart';
+import 'package:shoplist/app/repositorio/repositorio_cell.dart';
 
 import '../../../models/listas_model.dart';
 

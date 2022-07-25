@@ -9,7 +9,7 @@ class ReuseCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 10.0),
       child: Container(
-        alignment: Alignment.center,
+        alignment: Alignment.topLeft,
         height: 120,
         decoration: BoxDecoration(
           color: const Color(0xFFFAFCFB),

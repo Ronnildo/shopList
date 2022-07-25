@@ -1,4 +1,6 @@
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shoplist/app/interface/widgets/ui/listar_listas.dart';
 
 import '../widgets/components/popup_list.dart';
@@ -11,12 +13,35 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  DeviceInfoPlugin deviceInfo =
+      DeviceInfoPlugin(); // instantiate device info plugin
+  AndroidDeviceInfo? androidDeviceInfo;
+
+  String? host, id, hardware, model, androidid;
+  @override
+  void initState() {
+    super.initState();
+    getDeviceinfo();
+  }
+
+  void getDeviceinfo() async {
+    androidDeviceInfo = await deviceInfo
+        .androidInfo; // instantiate Android Device Infoformation
+    setState(() {
+      host = androidDeviceInfo?.host;
+      id = androidDeviceInfo?.id;
+      hardware = androidDeviceInfo?.hardware;
+      model = androidDeviceInfo?.model;
+      androidid = androidDeviceInfo?.androidId;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Padding(
-          padding: EdgeInsets.only(bottom: 10.0),
+          padding: EdgeInsets.only(bottom: 16.0),
           child: Text(
             'Listas De Compra',
             style: TextStyle(
@@ -27,6 +52,24 @@ class _MainScreenState extends State<MainScreen> {
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF4A9777),
+        // actions: <Widget>[
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(FontAwesomeIcons.trash),
+        //   ),
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(FontAwesomeIcons.pen),
+        //   ),
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(FontAwesomeIcons.ellipsisVertical),
+        //   ),
+        // ],
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+          size: 22,
+        ),
       ),
       backgroundColor: const Color(0xFF89CDB2),
       body: const Padding(
@@ -41,7 +84,9 @@ class _MainScreenState extends State<MainScreen> {
           onPressed: () {
             showDialog(
                 context: context,
-                builder: (context) => const PopUpInsertList());
+                builder: (context) => PopUpInsertList(
+                      id: androidid!,
+                    ));
           },
           backgroundColor: const Color(0xFF4A9777),
           elevation: 10,

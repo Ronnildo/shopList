@@ -8,7 +8,7 @@ import '../models/cell_model.dart';
 class RepositorioCells extends Repositorio {
   final String _baseUrl = "https://organizershop.herokuapp.com/";
   @override
-  Future add(Parametros p) async {
+  Future add(String id, Parametros p) async {
     throw UnimplementedError();
   }
 
@@ -18,18 +18,16 @@ class RepositorioCells extends Repositorio {
   }
 
   @override
-  Future get(Parametros p) async {
+  Future<List<ListaModel>> get(Parametros p) async {
     dio = Dio(BaseOptions(baseUrl: _baseUrl));
     try {
       Response? response = await dio?.post(
         "/cell",
         data: p.dados,
       );
-      //print(response?.data.toString());
+      print(response?.data.toString());
       if (response?.statusCode == 200) {
-        if (ListasModel.fromJson(response?.data).listas! == []) {
-          return ListaModel(id: null, mes: "err.message", cellId: null);
-        }
+        if (ListasModel.fromJson(response?.data).listas! == []) {}
         return ListasModel.fromJson(response?.data).listas!;
       }
     } on DioError catch (err) {
@@ -39,6 +37,12 @@ class RepositorioCells extends Repositorio {
         ],
       ).listas!;
     }
+    return ListasModel(
+      listas: [
+        ListaModel(id: null, mes: "Ale", cellId: null),
+      ],
+    ).listas!;
+    ;
   }
 
   @override

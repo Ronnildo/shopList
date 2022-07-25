@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:shoplist/app/core/parametros.dart';
 import 'package:shoplist/app/interface/widgets/components/buttom_validate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shoplist/app/interface/widgets/ui/add_lista.dart';
+import 'package:shoplist/app/repositorio/repositorio_lista.dart';
 
 class PopUpInsertList extends StatefulWidget {
-  const PopUpInsertList({Key? key}) : super(key: key);
+  final String id;
+  const PopUpInsertList({Key? key, required this.id}) : super(key: key);
 
   @override
   State<PopUpInsertList> createState() => _PopUpInsertListState();
@@ -11,11 +15,17 @@ class PopUpInsertList extends StatefulWidget {
 
 class _PopUpInsertListState extends State<PopUpInsertList> {
   final TextEditingController _textEditingController = TextEditingController();
+  final RepositorioLista _repositorioLista = RepositorioLista();
+  Parametros? p;
 
-  void voltar() {
+  void cancel() {
     setState(() {
       Navigator.pop(context);
     });
+  }
+
+  void limparCampo() {
+    _textEditingController.text = "";
   }
 
   @override
@@ -51,11 +61,31 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               GestureDetector(
-                onTap: voltar,
+                onTap: cancel,
                 child: const ButtomValidate(icon: FontAwesomeIcons.xmark),
               ),
               GestureDetector(
-                onTap: voltar,
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => FutureBuilder(
+                            future: _repositorioLista.add(
+                              widget.id,
+                              p = Parametros(
+                                  dados: {"mes": _textEditingController.text}),
+                            ),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return const AlertDialog(
+                                    content: Text("Lista criada com sucesso!"));
+                              }
+                              return const AlertDialog(
+                                content: Text("Criando Lista..."),
+                              );
+                            },
+                          ));
+                  limparCampo();
+                },
                 child: const ButtomValidate(icon: FontAwesomeIcons.check),
               ),
             ],
