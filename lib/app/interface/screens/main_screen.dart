@@ -52,20 +52,6 @@ class _MainScreenState extends State<MainScreen> {
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF4A9777),
-        // actions: <Widget>[
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(FontAwesomeIcons.trash),
-        //   ),
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(FontAwesomeIcons.pen),
-        //   ),
-        //   IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(FontAwesomeIcons.ellipsisVertical),
-        //   ),
-        // ],
         iconTheme: const IconThemeData(
           color: Colors.black,
           size: 22,

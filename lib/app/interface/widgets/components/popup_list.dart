@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shoplist/app/core/parametros.dart';
 import 'package:shoplist/app/interface/widgets/components/buttom_validate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shoplist/app/interface/widgets/ui/add_lista.dart';
 import 'package:shoplist/app/repositorio/repositorio_lista.dart';
 
 class PopUpInsertList extends StatefulWidget {
