@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shoplist/app/core/constantes.dart';
 import 'package:shoplist/app/core/parametros.dart';
 import 'package:shoplist/app/models/listas_model.dart';
 import 'package:shoplist/app/repositorio/repositorio.dart';
@@ -6,7 +7,6 @@ import 'package:shoplist/app/repositorio/repositorio.dart';
 import '../models/cell_model.dart';
 
 class RepositorioCells extends Repositorio {
-  final String _baseUrl = "https://organizershop.herokuapp.com/";
   @override
   Future add(String id, Parametros p) async {
     throw UnimplementedError();
@@ -19,7 +19,7 @@ class RepositorioCells extends Repositorio {
 
   @override
   Future<List<ListaModel>> get(Parametros p) async {
-    dio = Dio(BaseOptions(baseUrl: _baseUrl));
+    dio = Dio(BaseOptions(baseUrl: BASE_URL));
     try {
       Response? response = await dio?.post(
         "/cell",
