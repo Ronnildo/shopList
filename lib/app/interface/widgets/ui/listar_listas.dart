@@ -1,4 +1,3 @@
-import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/core/parametros.dart';
 import 'package:shoplist/app/interface/screens/list_screen.dart';
@@ -10,38 +9,16 @@ import 'package:shoplist/app/repositorio/repositorio_item.dart';
 import '../../../models/listas_model.dart';
 
 class ListarListas extends StatefulWidget {
-  const ListarListas({Key? key}) : super(key: key);
+  final String androidId;
+  const ListarListas({Key? key, required this.androidId}) : super(key: key);
 
   @override
   State<ListarListas> createState() => _ListarListasState();
 }
 
 class _ListarListasState extends State<ListarListas> {
-  DeviceInfoPlugin deviceInfo =
-      DeviceInfoPlugin(); // instantiate device info plugin
-  AndroidDeviceInfo? androidDeviceInfo;
-
-  String? host, id, hardware, model, androidid;
-  @override
-  void initState() {
-    super.initState();
-    getDeviceinfo();
-  }
-
-  void getDeviceinfo() async {
-    androidDeviceInfo = await deviceInfo
-        .androidInfo; // instantiate Android Device Infoformation
-    setState(() {
-      host = androidDeviceInfo?.host;
-      id = androidDeviceInfo?.id;
-      hardware = androidDeviceInfo?.hardware;
-      model = androidDeviceInfo?.model;
-      androidid = androidDeviceInfo?.androidId;
-    });
-  }
-
   Parametros data() {
-    Parametros p = Parametros(dados: {"cell_id": androidid});
+    Parametros p = Parametros(dados: {"cell_id": widget.androidId});
     return p;
   }
 
@@ -61,8 +38,10 @@ class _ListarListasState extends State<ListarListas> {
               ListaModel listas = lista[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ListScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ListScreen()));
                 },
                 child: ReuseCard(
                   widget: ListView(
@@ -82,7 +61,7 @@ class _ListarListasState extends State<ListarListas> {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             var item = snapshot.data! as List<ItemModel>;
-                            if (item.length == 0) {
+                            if (item.isEmpty) {
                               return Column(
                                 children: const [
                                   Text(

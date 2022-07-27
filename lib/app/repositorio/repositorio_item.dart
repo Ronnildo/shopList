@@ -7,19 +7,16 @@ import 'package:shoplist/app/repositorio/repositorio.dart';
 class RepositorioDeItem extends Repositorio {
   @override
   Future add(String id, Parametros p) {
-    // TODO: implement add
     throw UnimplementedError();
   }
 
   @override
   Future delete() {
-    // TODO: implement delete
     throw UnimplementedError();
   }
 
   @override
   Future<List<ListaItensModel>> get(Parametros p) {
-    // TODO: implement get
     throw UnimplementedError();
   }
 
@@ -37,7 +34,6 @@ class RepositorioDeItem extends Repositorio {
 
   @override
   Future update(Parametros p) {
-    // TODO: implement update
     throw UnimplementedError();
   }
 }
