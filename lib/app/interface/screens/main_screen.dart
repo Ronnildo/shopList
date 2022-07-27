@@ -1,7 +1,12 @@
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
-import 'package:shoplist/app/interface/widgets/card_reuse.dart';
+import 'package:shoplist/app/interface/widgets/components/card_reuse.dart';
 import 'package:shoplist/app/interface/widgets/popup_list.dart';
 import '../widgets/popup_list.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shoplist/app/interface/widgets/ui/listar_listas.dart';
+
+import '../widgets/components/popup_list.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -11,12 +16,35 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  DeviceInfoPlugin deviceInfo =
+      DeviceInfoPlugin(); // instantiate device info plugin
+  AndroidDeviceInfo? androidDeviceInfo;
+
+  String? host, id, hardware, model, androidid;
+  @override
+  void initState() {
+    super.initState();
+    getDeviceinfo();
+  }
+
+  void getDeviceinfo() async {
+    androidDeviceInfo = await deviceInfo
+        .androidInfo; // instantiate Android Device Infoformation
+    setState(() {
+      host = androidDeviceInfo?.host;
+      id = androidDeviceInfo?.id;
+      hardware = androidDeviceInfo?.hardware;
+      model = androidDeviceInfo?.model;
+      androidid = androidDeviceInfo?.androidId;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Padding(
-          padding: EdgeInsets.only(bottom: 10.0),
+          padding: EdgeInsets.only(bottom: 16.0),
           child: Text(
             'Listas De Compra',
             style: TextStyle(
@@ -27,11 +55,39 @@ class _MainScreenState extends State<MainScreen> {
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF4A9777),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+          size: 22,
+        ),
       ),
       backgroundColor: const Color(0xFF89CDB2),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Column(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.0),
+        child: ListarListas(),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 30.0,
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) => PopUpInsertList(
+                      id: androidid!,
+                    ));
+          },
+          backgroundColor: const Color(0xFF4A9777),
+          elevation: 10,
+          hoverElevation: 50,
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
+
+              /*Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -92,24 +148,4 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
           ],
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 30.0,
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (context) => const PopUpInsertList());
-          },
-          backgroundColor: const Color(0xFF4A9777),
-          elevation: 10,
-          hoverElevation: 50,
-          child: const Icon(Icons.add),
-        ),
-      ),
-    );
-  }
-}
+        ),*/

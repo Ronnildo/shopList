@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/interface/screens/main_screen.dart';
 import 'package:shoplist/app/interface/screens/list_screen.dart';
+import 'package:shoplist/app/interface/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Organizador de Compras',
-      home: ListScreen(),
+      home: const InitialScreen(),
       // routes: {},
       theme: ThemeData(
         fontFamily: 'Concert One',
