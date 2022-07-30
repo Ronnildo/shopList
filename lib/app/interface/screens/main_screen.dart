@@ -1,6 +1,5 @@
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shoplist/app/interface/widgets/ui/listar_listas.dart';
 
 import '../widgets/components/popup_list.dart';
@@ -17,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
       DeviceInfoPlugin(); // instantiate device info plugin
   AndroidDeviceInfo? androidDeviceInfo;
 
-  String? host, id, hardware, model, androidid;
+  String? androidid;
   @override
   void initState() {
     super.initState();
@@ -28,10 +27,6 @@ class _MainScreenState extends State<MainScreen> {
     androidDeviceInfo = await deviceInfo
         .androidInfo; // instantiate Android Device Infoformation
     setState(() {
-      host = androidDeviceInfo?.host;
-      id = androidDeviceInfo?.id;
-      hardware = androidDeviceInfo?.hardware;
-      model = androidDeviceInfo?.model;
       androidid = androidDeviceInfo?.androidId;
     });
   }
@@ -58,9 +53,11 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       backgroundColor: const Color(0xFF89CDB2),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 10.0),
-        child: ListarListas(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: ListarListas(
+          androidId: androidid ?? "Null",
+        ),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(
@@ -71,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
             showDialog(
                 context: context,
                 builder: (context) => PopUpInsertList(
-                      id: androidid!,
+                      id: androidid ?? "Null",
                     ));
           },
           backgroundColor: const Color(0xFF4A9777),
