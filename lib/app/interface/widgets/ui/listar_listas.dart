@@ -29,9 +29,9 @@ class _ListarListasState extends State<ListarListas> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _repositorioCells.get(data()),
-      builder: ((context, AsyncSnapshot snapshot) {
+      builder: ((context, AsyncSnapshot<List<ListaModel>> snapshot) {
         if (snapshot.hasData) {
-          var lista = snapshot.data! as List<ListaModel>;
+          var lista = snapshot.data!;
           return ListView.builder(
             itemCount: lista.length,
             itemBuilder: (_, index) {

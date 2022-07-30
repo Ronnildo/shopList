@@ -26,7 +26,7 @@ class RepositorioCells extends Repositorio {
       );
 
       if (response?.statusCode == 200) {
-        if (ListasModel.fromJson(response?.data).listas! == []) {}
+        //if (ListasModel.fromJson(response?.data).listas! == []) {}
         return ListasModel.fromJson(response?.data).listas!;
       }
     } on DioError catch (err) {

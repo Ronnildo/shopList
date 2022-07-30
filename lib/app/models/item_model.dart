@@ -45,28 +45,3 @@ class ListaItensModel {
     return data;
   }
 }
-
-class Itens {
-  int? id;
-  String? nameItem;
-  String? category;
-  int? listaId;
-
-  Itens({this.id, this.nameItem, this.category, this.listaId});
-
-  Itens.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    nameItem = json['nameItem'];
-    category = json['category'];
-    listaId = json['lista_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['nameItem'] = nameItem;
-    data['category'] = category;
-    data['lista_id'] = listaId;
-    return data;
-  }
-}

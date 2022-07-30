@@ -15,17 +15,15 @@ class RepositorioLista extends Repositorio {
       ),
     );
     try {
-      if (p.dados.values.toString() == "") {
-        return ListaModel(cellId: null, id: null, mes: "Não é um mês");
-      } else {
-        // ignore: unused_local_variable
-        Response? response = await dio?.post("/lista/$id", data: p.dados);
-        // print(response?.data);
+      print(p.dados["mes"]);
+      // ignore: unused_local_variable
+      Response? response = await dio?.post("/lista/$id", data: p.dados);
+      if (response?.statusCode == 200) {
+        return ListaModel(
+            cellId: null,
+            id: null,
+            mes: "Lista Criada com sucesso ${p.dados['mes']}");
       }
-      return ListaModel(
-          cellId: null,
-          id: null,
-          mes: "Lista Criada com sucesso ${p.dados['mes']}");
     } on DioError catch (e) {
       return ListaModel(cellId: null, id: null, mes: "Lista já existe");
     }
