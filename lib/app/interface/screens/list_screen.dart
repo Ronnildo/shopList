@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shoplist/app/interface/widgets/components/teste_popup_list.dart';
 
 class ListScreen extends StatefulWidget {
-
-  const ListScreen({Key? key}) : super(key: key);
+  const ListScreen({Key? key, required this.id}) : super(key: key);
+  final String id;
 
   @override
   State<ListScreen> createState() => _ListScreenState();
@@ -18,7 +18,7 @@ class _ListScreenState extends State<ListScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           child: SingleChildScrollView(
-            physics: PageScrollPhysics(),
+            physics: const PageScrollPhysics(),
             scrollDirection: Axis.vertical,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
