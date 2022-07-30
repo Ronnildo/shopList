@@ -15,7 +15,6 @@ class RepositorioLista extends Repositorio {
       ),
     );
     try {
-      print(p.dados["mes"]);
       // ignore: unused_local_variable
       Response? response = await dio?.post("/lista/$id", data: p.dados);
       if (response?.statusCode == 200) {
