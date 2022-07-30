@@ -14,7 +14,7 @@ class PopUpInsertList extends StatefulWidget {
 }
 
 class _PopUpInsertListState extends State<PopUpInsertList> {
-  final TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _textEditingController = TextEditingController();
   final RepositorioLista _repositorioLista = RepositorioLista();
   String? _mes;
   Parametros? p;
@@ -25,7 +25,7 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
     });
   }
 
-  Parametros data() {
+  Parametros data(String mes) {
     List meses = [
       "Janeiro",
       "Fevereiro",
@@ -40,11 +40,14 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
       "Novembro",
       "Dezembro",
     ];
-    var element = "";
+    var element;
     for (element in meses) {
-      if (_textEditingController.text == element) {
-        _mes = _textEditingController.text;
-      } else if (_textEditingController.text != element) {
+      if (mes == element) {
+        _mes = mes;
+      }
+    }
+    for (element in meses) {
+      if (mes != element) {
         _mes = "";
       }
     }
@@ -99,16 +102,11 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
                       builder: (context) => FutureBuilder(
                           future: _repositorioLista.add(
                             widget.id,
-                            data(),
+                            data(_textEditingController.text),
                           ),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               ListaModel lista = snapshot.data! as ListaModel;
-                              if (_mes == "") {
-                                return const AlertDialog(
-                                  content: Text("Não é um mês"),
-                                );
-                              }
                               return AlertDialog(
                                 content: Text("${lista.mes}"),
                               );
