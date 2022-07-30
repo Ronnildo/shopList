@@ -41,16 +41,14 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
       "Dezembro",
     ];
     var element;
+
     for (element in meses) {
       if (mes == element) {
-        _mes = mes;
+        print(element);
+        _mes = _textEditingController.text;
       }
     }
-    for (element in meses) {
-      if (mes != element) {
-        _mes = "";
-      }
-    }
+
     Parametros p = Parametros(dados: {"mes": _mes});
     return p;
   }
