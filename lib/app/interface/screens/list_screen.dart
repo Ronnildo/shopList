@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoplist/app/interface/widgets/components/popup_list.dart';
+import 'package:shoplist/app/interface/widgets/components/teste_popup_list.dart';
 
 class ListScreen extends StatefulWidget {
 
@@ -44,7 +44,7 @@ class _ListScreenState extends State<ListScreen> {
                         ChecarCaixa(title: 'Picanha'),
                         ChecarCaixa(title: 'Coração'),
                         ChecarCaixa(title: 'Coxão mole'),
-                        ChecarCaixa(title: 'Filé Migon'),
+                        ChecarCaixa(title: 'Filé Mignon'),
                         ChecarCaixa(title: 'Coxa'),
                         ChecarCaixa(title: 'Sobre-Coxa'),
                         ChecarCaixa(title: 'Sobre-Coxa'),
@@ -92,8 +92,8 @@ class _ListScreenState extends State<ListScreen> {
         backgroundColor: const Color.fromRGBO(74, 151, 119, 1),
         child: const Icon(Icons.add),
         onPressed: () {
-          //   Navigator.push(context,
-          //       //MaterialPageRoute(builder: (context) => const PopUpInsertList()));
+          Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const PopUpInsertList()));
         },
       ),
     );
