@@ -7,7 +7,7 @@ import 'package:shoplist/app/repositorio/repositorio.dart';
 class RepositorioDeItem extends Repositorio {
   @override
   Future add(String id, Parametros p) async {
-    /*dio = Dio(
+    dio = Dio(
       BaseOptions(
         baseUrl: BASE_URL,
         receiveTimeout: 9000,
@@ -16,11 +16,18 @@ class RepositorioDeItem extends Repositorio {
     );
     try {
       print(p.dados["itens"]);
-      Response? responde = await dio?.post('/lista/$id/itens', data: p.dados);
+      Response? response = await dio?.post('/lista/$id/itens', data: p.dados);
       if (response?.statusCode == 200) {
-
+        ItemModel(
+          category: null,
+          listaId: null,
+          id: null,
+          nameItem: 'Item adicionado ${p.dados['item']}'
+        );
       }
-    }*/
+    } on DioError catch (e) {
+      return ItemModel(nameItem: 'item já adicionado', id: null, listaId: null, category: null);
+    }
   }
 
   @override
