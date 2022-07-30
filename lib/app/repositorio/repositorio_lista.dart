@@ -7,39 +7,40 @@ import '../core/constantes.dart';
 class RepositorioLista extends Repositorio {
   @override
   Future add(String id, Parametros p) async {
-    dio = Dio(BaseOptions(baseUrl: BASE_URL));
+    dio = Dio(
+      BaseOptions(
+        baseUrl: BASE_URL,
+        connectTimeout: 7000,
+        receiveTimeout: 9000,
+      ),
+    );
     try {
+      print(p.dados["mes"]);
+      // ignore: unused_local_variable
       Response? response = await dio?.post("/lista/$id", data: p.dados);
-      if (response?.statusCode == 401) {
-        return ListaModel(cellId: null, id: null, mes: true.toString());
+      if (response?.statusCode == 200) {
+        return ListaModel(
+            cellId: null,
+            id: null,
+            mes: "Lista Criada com sucesso ${p.dados['mes']}");
       }
-      return ListaModel.fromJson(response?.data);
-    } on DioError catch (err) {
-      return ListaModel(cellId: null, id: null, mes: err.message);
+    } on DioError catch (e) {
+      return ListaModel(cellId: null, id: null, mes: "Lista já existe");
     }
   }
 
   @override
   Future delete() {
-    // TODO: implement delete
     throw UnimplementedError();
   }
 
   @override
   Future get(Parametros p) {
-    // TODO: implement get
-    throw UnimplementedError();
-  }
-
-  @override
-  Future getAll() {
-    // TODO: implement getAll
     throw UnimplementedError();
   }
 
   @override
   Future update(Parametros p) {
-    // TODO: implement update
     throw UnimplementedError();
   }
 }

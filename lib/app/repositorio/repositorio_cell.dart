@@ -4,8 +4,6 @@ import 'package:shoplist/app/core/parametros.dart';
 import 'package:shoplist/app/models/listas_model.dart';
 import 'package:shoplist/app/repositorio/repositorio.dart';
 
-import '../models/cell_model.dart';
-
 class RepositorioCells extends Repositorio {
   @override
   Future add(String id, Parametros p) async {
@@ -19,15 +17,16 @@ class RepositorioCells extends Repositorio {
 
   @override
   Future<List<ListaModel>> get(Parametros p) async {
-    dio = Dio(BaseOptions(baseUrl: BASE_URL));
+    dio = Dio(BaseOptions(
+        baseUrl: BASE_URL, connectTimeout: 10000, receiveTimeout: 10000));
     try {
       Response? response = await dio?.post(
         "/cell",
         data: p.dados,
       );
-      print(response?.data.toString());
+
       if (response?.statusCode == 200) {
-        if (ListasModel.fromJson(response?.data).listas! == []) {}
+        //if (ListasModel.fromJson(response?.data).listas! == []) {}
         return ListasModel.fromJson(response?.data).listas!;
       }
     } on DioError catch (err) {
@@ -42,12 +41,6 @@ class RepositorioCells extends Repositorio {
         ListaModel(id: null, mes: "Ale", cellId: null),
       ],
     ).listas!;
-    ;
-  }
-
-  @override
-  Future<List<CellModel>> getAll() async {
-    throw UnimplementedError();
   }
 
   @override

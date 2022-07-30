@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoplist/app/core/parametros.dart';
 import 'package:shoplist/app/interface/widgets/components/buttom_validate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shoplist/app/models/listas_model.dart';
 import 'package:shoplist/app/repositorio/repositorio_lista.dart';
 
 class PopUpInsertList extends StatefulWidget {
@@ -13,14 +14,45 @@ class PopUpInsertList extends StatefulWidget {
 }
 
 class _PopUpInsertListState extends State<PopUpInsertList> {
-  final TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _textEditingController = TextEditingController();
   final RepositorioLista _repositorioLista = RepositorioLista();
+  String? _mes;
   Parametros? p;
 
   void cancel() {
     setState(() {
       Navigator.pop(context);
     });
+  }
+
+  Parametros data(String mes) {
+    List meses = [
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro",
+    ];
+    var element;
+    for (element in meses) {
+      if (mes == element) {
+        _mes = mes;
+      }
+    }
+    for (element in meses) {
+      if (mes != element) {
+        _mes = "";
+      }
+    }
+    Parametros p = Parametros(dados: {"mes": _mes});
+    return p;
   }
 
   void limparCampo() {
@@ -68,22 +100,23 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
                   showDialog(
                       context: context,
                       builder: (context) => FutureBuilder(
-                        future: _repositorioLista.add(
-                          widget.id,
-                          p = Parametros(
-                              dados: {"mes": _textEditingController.text}),
-                        ),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
+                          future: _repositorioLista.add(
+                            widget.id,
+                            data(_textEditingController.text),
+                          ),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              ListaModel lista = snapshot.data! as ListaModel;
+                              return AlertDialog(
+                                content: Text("${lista.mes}"),
+                              );
+                            }
                             return const AlertDialog(
-                                content: Text("Lista criada com sucesso!"));
-                          }
-                          return const AlertDialog(
-                            content: Text("Criando Lista..."),
-                          );
-                        },
-                      ));
-                  limparCampo();
+                              content: Text("Criando lista..."),
+                            );
+                          }));
+
+                  // limparCampo();
                 },
                 child: const ButtomValidate(icon: FontAwesomeIcons.check),
               ),

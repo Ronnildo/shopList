@@ -6,20 +6,30 @@ import 'package:shoplist/app/repositorio/repositorio.dart';
 
 class RepositorioDeItem extends Repositorio {
   @override
-  Future add(String id, Parametros p) {
-    // TODO: implement add
-    throw UnimplementedError();
+  Future add(String id, Parametros p) async {
+    /*dio = Dio(
+      BaseOptions(
+        baseUrl: BASE_URL,
+        receiveTimeout: 9000,
+        connectTimeout: 7000,
+      ),
+    );
+    try {
+      print(p.dados["itens"]);
+      Response? responde = await dio?.post('/lista/$id/itens', data: p.dados);
+      if (response?.statusCode == 200) {
+
+      }
+    }*/
   }
 
   @override
   Future delete() {
-    // TODO: implement delete
     throw UnimplementedError();
   }
 
   @override
   Future<List<ListaItensModel>> get(Parametros p) {
-    // TODO: implement get
     throw UnimplementedError();
   }
 
@@ -37,7 +47,6 @@ class RepositorioDeItem extends Repositorio {
 
   @override
   Future update(Parametros p) {
-    // TODO: implement update
     throw UnimplementedError();
   }
 }
