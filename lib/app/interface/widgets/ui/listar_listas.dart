@@ -41,7 +41,9 @@ class _ListarListasState extends State<ListarListas> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ListScreen(id: '',)));
+                          builder: (context) => ListScreen(
+                                id: listas.id!,
+                              )));
                 },
                 child: ReuseCard(
                   widget: ListView(

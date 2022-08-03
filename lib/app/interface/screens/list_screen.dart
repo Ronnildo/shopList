@@ -1,24 +1,46 @@
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/interface/widgets/components/teste_popup_list.dart';
+import 'package:shoplist/app/interface/widgets/ui/listar_itens.dart';
+import 'package:shoplist/app/repositorio/repositorio_item.dart';
+
+import '../../models/item_model.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key, required this.id}) : super(key: key);
-  final String id;
+  final int id;
 
   @override
   State<ListScreen> createState() => _ListScreenState();
 }
 
 class _ListScreenState extends State<ListScreen> {
+  final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
+  AndroidDeviceInfo? androidDeviceInfo;
+  String? androidId;
+
+  @override
+  void initState() {
+    super.initState();
+    getDeviceInfo;
+  }
+
+  void getDeviceInfo() async {
+    androidDeviceInfo = await _deviceInfo.androidInfo;
+    setState(() {
+      androidId = androidDeviceInfo?.androidId;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    RepositorioDeItem _repo = RepositorioDeItem();
     return Scaffold(
       backgroundColor: const Color(0xFF89CDB2),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           child: SingleChildScrollView(
-            physics: const PageScrollPhysics(),
             scrollDirection: Axis.vertical,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -38,51 +60,31 @@ class _ListScreenState extends State<ListScreen> {
                   height: 15.0,
                 ),
                 Partitions(
-                    sectionName: 'Carnes e Frios',
-                    nameBox: Column(
-                      children: <Widget> [
-                        ChecarCaixa(title: 'Picanha'),
-                        ChecarCaixa(title: 'Coração'),
-                        ChecarCaixa(title: 'Coxão mole'),
-                        ChecarCaixa(title: 'Filé Mignon'),
-                        ChecarCaixa(title: 'Coxa'),
-                        ChecarCaixa(title: 'Sobre-Coxa'),
-                        ChecarCaixa(title: 'Sobre-Coxa'),
-                      ],
-                    )
-                ),
-                Partitions(
-                  sectionName: 'Bebidas',
+                  sectionName: 'teste',
                   nameBox: Column(
-                    children: <Widget> [
-                      ChecarCaixa(title: 'Redbull'),
-                      ChecarCaixa(title: 'Fresh'),
-                      ChecarCaixa(title: 'Monster'),
-                      ChecarCaixa(title: 'Cocacola'),
-                      ChecarCaixa(title: 'New Suith Scooth White Wine'),
-                      ChecarCaixa(title: 'Antardita'),
-                      ChecarCaixa(title: 'Sukita'),
-                      ChecarCaixa(title: 'Chuva de Prata'),
+                    children: <Widget>[
+                      ChecarCaixa(title: 'arroz'),
+                      ChecarCaixa(title: 'arroz'),
+                      ChecarCaixa(title: 'arroz'),
+                      ChecarCaixa(title: 'arroz'),
+                      FutureBuilder(
+                          future: _repo.getAll(1),
+                          builder: (context,
+                              AsyncSnapshot<List<ItemModel>> snapshot) {
+                            if (snapshot.hasData) {
+                              var lista = snapshot.data!;
+                              return ListView.builder(
+                                  itemCount: lista.length,
+                                  itemBuilder: (_, index) {
+                                    ItemModel itens = lista[index];
+                                    return ChecarCaixa(title: '$lista');
+                                  });
+                            }
+                            return CircularProgressIndicator();
+                          }),
                     ],
                   ),
-                ),
-                Partitions(
-                  sectionName: 'Higiene Pessoal',
-                  nameBox: Column(
-                    children: <Widget> [
-                      ChecarCaixa(title: 'Papel higiênico'),
-                      ChecarCaixa(title: 'Absorvente Feminino'),
-                      ChecarCaixa(title: 'Sabonete Líquido'),
-                      ChecarCaixa(title: 'Sobonete em barra'),
-                      ChecarCaixa(title: 'Lenços Umidecidos'),
-                      ChecarCaixa(title: 'Controle do Ph'),
-                      ChecarCaixa(title: 'Escova de Dentes'),
-                      ChecarCaixa(title: 'Creme Dental'),
-                      ChecarCaixa(title: 'Água Micelair'),
-                      ChecarCaixa(title: 'Água Micelair'),
-                    ],
-                  ),
-                ),
+                )
               ],
             ),
           ),
@@ -101,10 +103,9 @@ class _ListScreenState extends State<ListScreen> {
 }
 
 class Partitions extends StatelessWidget {
-  const Partitions({Key? key, required this.sectionName, /*required this.teste,*/ this.nameBox})
+  const Partitions({Key? key, required this.sectionName, this.nameBox})
       : super(key: key);
   final String sectionName;
-  //final Widget teste;
   final Column? nameBox;
 
   @override
@@ -133,10 +134,8 @@ class Partitions extends StatelessWidget {
 class ChecarCaixa extends StatefulWidget {
   ChecarCaixa({Key? key, required this.title, this.checado = false})
       : super(key: key);
-
-  bool checado;
   final String title;
-  late String Name;
+  bool checado;
 
   @override
   State<ChecarCaixa> createState() => _ChecarCaixaState();

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import '../../screens/list_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'buttom_validate.dart';
+import '../../widgets/ui/drop_page.dart';
 
 class PopUpInsertList extends StatefulWidget {
+
   const PopUpInsertList({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +18,14 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
       Navigator.pop(context);
     });
   }
+
+  List<String> listaDeProdutos = [
+    "teste",
+    "teste",
+    "teste",
+    "teste",
+    "teste",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +54,21 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
-                  Text(
-                    'Categoria do Item',
+                children: <Widget>[
+                  const Text(
+                    'Carne',
                     style: TextStyle(
                       color: Colors.grey,
                     ),
                   ),
-                  Icon(Icons.sort_by_alpha),
+                  GestureDetector(
+                    child: Icon(Icons.sort_by_alpha),
+                    onTap: () {
+                      Navigator.push(
+                          context, MaterialPageRoute(
+                          builder: (context) => DropPage()));
+                    }
+                  ),
                 ],
               ),
               SingleChildScrollView(
@@ -60,11 +77,11 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
                   width: 232,
                   height: 314,
                   child: ListView.builder(
-                      itemCount: 10,
-                      itemBuilder: (BuildContext context, int index) {
+                      itemCount: listaDeProdutos.length,
+                      itemBuilder: (BuildContext context, index) {
                         return Column(
                           children: <Widget>[
-                            ChecarCaixa(title: 'Macbook Air M1 202$index'),
+                            ChecarCaixa(title: listaDeProdutos.elementAt(index)),
                           ],
                         );
                       }),

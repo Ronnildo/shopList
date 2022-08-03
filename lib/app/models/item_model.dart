@@ -24,12 +24,13 @@ class ItemModel {
 }
 
 class ListaItensModel {
+  int? id;
   List<ItemModel>? itens;
 
-  ListaItensModel({this.itens});
+  ListaItensModel({this.itens, this.id});
 
   ListaItensModel.fromJson(Map<String, dynamic> json) {
-    if (json['itens'] != null) {
+    if (json['itens'] != null) {git
       itens = <ItemModel>[];
       json['itens'].forEach((v) {
         itens!.add(ItemModel.fromJson(v));

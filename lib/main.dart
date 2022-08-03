@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Organizador de Compras',
-      home: const InitialScreen(),
+      home: ListScreen(id: 1,),
       // routes: {},
       theme: ThemeData(
         fontFamily: 'Concert One',

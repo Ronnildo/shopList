@@ -15,10 +15,9 @@ class RepositorioDeItem extends Repositorio {
       ),
     );
     try {
-      print(p.dados["itens"]);
       Response? response = await dio?.post('/lista/$id/itens', data: p.dados);
       if (response?.statusCode == 200) {
-        ItemModel(
+        return ItemModel(
           category: null,
           listaId: null,
           id: null,
