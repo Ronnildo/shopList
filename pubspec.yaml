@@ -40,6 +40,8 @@ dependencies:
   dio: ^4.0.6
   device_info: ^2.0.3
   splash_screen_view: ^3.0.0
+  responsive_builder: ^0.4.2
+  bloc: ^8.1.0
 
 dev_dependencies:
   flutter_test:
