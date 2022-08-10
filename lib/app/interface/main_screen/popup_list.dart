@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/core/parametros.dart';
-import 'package:shoplist/app/interface/widgets/components/buttom_validate.dart';
+import 'package:shoplist/app/interface/widgets/buttom_validate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shoplist/app/models/listas_model.dart';
 import 'package:shoplist/app/repositorio/repositorio_lista.dart';
@@ -14,7 +14,7 @@ class PopUpInsertList extends StatefulWidget {
 }
 
 class _PopUpInsertListState extends State<PopUpInsertList> {
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   final RepositorioLista _repositorioLista = RepositorioLista();
   String? _mes;
   Parametros? p;
@@ -40,11 +40,10 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
       "Novembro",
       "Dezembro",
     ];
-    var element;
+    var element = "";
 
     for (element in meses) {
       if (mes == element) {
-        print(element);
         _mes = _textEditingController.text;
       }
     }
@@ -55,6 +54,28 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
 
   void limparCampo() {
     _textEditingController.text = "";
+  }
+
+  void setData(String mes) {
+    setState(() {
+      showDialog(
+        context: context,
+        builder: (context) => FutureBuilder(
+          future: _repositorioLista.add(widget.id, data(mes)),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              ListaModel lista = snapshot.data! as ListaModel;
+              return AlertDialog(
+                content: Text("${lista.mes}"),
+              );
+            }
+            return const AlertDialog(
+              content: Text("Criando lista..."),
+            );
+          },
+        ),
+      );
+    });
   }
 
   @override
@@ -76,47 +97,27 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
             keyboardType: TextInputType.text,
             decoration: const InputDecoration(
               labelText: 'Mês',
+              border: OutlineInputBorder(),
               fillColor: Color(0xFFA6BAB2),
               focusColor: Color(0xFF44AA99),
             ),
             maxLength: 12,
             style: const TextStyle(
               color: Colors.green,
-              fontSize: 20,
+              fontSize: 22,
             ),
             controller: _textEditingController,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              GestureDetector(
-                onTap: cancel,
-                child: const ButtomValidate(icon: FontAwesomeIcons.xmark),
+              ButtomValidate(
+                icon: FontAwesomeIcons.xmark,
+                ontap: cancel,
               ),
-              GestureDetector(
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) => FutureBuilder(
-                          future: _repositorioLista.add(
-                            widget.id,
-                            data(_textEditingController.text),
-                          ),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              ListaModel lista = snapshot.data! as ListaModel;
-                              return AlertDialog(
-                                content: Text("${lista.mes}"),
-                              );
-                            }
-                            return const AlertDialog(
-                              content: Text("Criando lista..."),
-                            );
-                          }));
-
-                  // limparCampo();
-                },
-                child: const ButtomValidate(icon: FontAwesomeIcons.check),
+              ButtomValidate(
+                icon: FontAwesomeIcons.check,
+                ontap: () => setData(_textEditingController.text),
               ),
             ],
           )

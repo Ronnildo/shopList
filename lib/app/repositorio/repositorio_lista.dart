@@ -24,7 +24,7 @@ class RepositorioLista extends Repositorio {
             mes: "Lista Criada com sucesso ${p.dados['mes']}");
       }
     } on DioError catch (e) {
-      return ListaModel(cellId: null, id: null, mes: "Lista já existe");
+      return ListaModel(cellId: e.error, id: null, mes: "Lista já existe");
     }
   }
 
