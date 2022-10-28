@@ -23,6 +23,18 @@ class _ListarListasState extends State<ListarListas> {
 
   final RepositorioCells _repositorioCells = RepositorioCells();
 
+  _listaAberta(int id, String mes) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ListScreen(
+          id: id,
+          mes: mes,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -35,30 +47,14 @@ class _ListarListasState extends State<ListarListas> {
             itemBuilder: (_, index) {
               ListaModel listas = lista[index];
               return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ListScreen(
-                        id: listas.id!,
-                        mes: listas.mes!,
-                      ),
-                    ),
-                  );
-                },
+                onTap: () => _listaAberta(listas.id!, listas.mes!),
                 child: ReuseCard(
                   widget: ListView(
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "${listas.mes}",
-                        style: const TextStyle(
-                          fontSize: 35,
-                          color: Color(0xFFA6BAB2),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                       MainCategory(id: listas.id!),
                     ],

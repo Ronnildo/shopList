@@ -22,7 +22,8 @@ class _CardItensState extends State<CardItens> {
         visible: widget.visible,
         child: Container(
           alignment: Alignment.topLeft,
-          height: 300,
+          height: 120,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: const Color(0xFFFAFCFB),
             borderRadius: BorderRadius.circular(20.0),

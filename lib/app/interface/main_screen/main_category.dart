@@ -31,20 +31,14 @@ class _MainCategoryState extends State<MainCategory> {
                   children: [
                     Text(
                       "${item[0].category}",
-                      style: const TextStyle(
-                        fontSize: 25,
-                        color: Color(0xFFA6BAB2),
-                      ),
+                      style: Theme.of(context).textTheme.headline5,
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
                       "${item[1].category}",
-                      style: const TextStyle(
-                        fontSize: 25,
-                        color: Color(0xFFA6BAB2),
-                      ),
+                      style: Theme.of(context).textTheme.headline5,
                     ),
                   ],
                 );

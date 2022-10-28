@@ -13,7 +13,7 @@ class ReuseCard extends StatelessWidget {
         height: 120,
         decoration: BoxDecoration(
           color: const Color(0xFFFAFCFB),
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(10.0),
           boxShadow: const [
             BoxShadow(
               color: Colors.black54,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoplist/app/core/parametros.dart';
-import 'package:shoplist/app/interface/widgets/buttom_validate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shoplist/app/interface/widgets/buttom_dialog.dart';
 import 'package:shoplist/app/models/listas_model.dart';
 import 'package:shoplist/app/repositorio/repositorio_lista.dart';
 
@@ -81,47 +80,60 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Criar Lista'),
-      backgroundColor: const Color(0xFFFAFDFB),
-      alignment: Alignment.center,
-      titleTextStyle: const TextStyle(
-        color: Colors.black,
-        fontSize: 36,
-        fontFamily: 'Concert One',
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextField(
-            keyboardType: TextInputType.text,
-            decoration: const InputDecoration(
-              labelText: 'Mês',
-              border: OutlineInputBorder(),
-              fillColor: Color(0xFFA6BAB2),
-              focusColor: Color(0xFF44AA99),
-            ),
-            maxLength: 12,
-            style: const TextStyle(
-              color: Colors.green,
-              fontSize: 22,
-            ),
-            controller: _textEditingController,
+      title: Container(
+        alignment: Alignment.topCenter,
+        decoration: const BoxDecoration(
+          color: Color(0xFF4A9777),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ButtomValidate(
-                icon: FontAwesomeIcons.xmark,
-                ontap: cancel,
+        ),
+        child: const Text('Criar Lista'),
+      ),
+      backgroundColor: const Color(0xFFFAFDFB),
+      titlePadding: const EdgeInsets.all(0),
+      alignment: Alignment.center,
+      titleTextStyle: Theme.of(context).textTheme.subtitle2,
+      content: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextField(
+              keyboardType: TextInputType.text,
+              decoration: const InputDecoration(
+                labelText: 'Mês',
+                border: OutlineInputBorder(),
+                fillColor: Color(0xFFA6BAB2),
+                focusColor: Color(0xFF44AA99),
               ),
-              ButtomValidate(
-                icon: FontAwesomeIcons.check,
-                ontap: () => setData(_textEditingController.text),
+              maxLength: 12,
+              style: const TextStyle(
+                color: Colors.green,
+                fontSize: 22,
               ),
-            ],
-          )
-        ],
+              controller: _textEditingController,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ButtomDialog(
+                  text: "Cancel",
+                  onTap: cancel,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                ButtomDialog(
+                  text: "Salvar",
+                  onTap: () => setData(_textEditingController.text),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
