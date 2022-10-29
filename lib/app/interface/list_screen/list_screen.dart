@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoplist/app/interface/widgets/container_color.dart';
 
 import 'widgets/insert_Item.dart';
 import 'widgets/list_categorys.dart';
@@ -19,14 +20,16 @@ class _ListScreenState extends State<ListScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF89CDB2),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10.0,
-            horizontal: 10,
-          ),
-          child: ListCategorys(
-            idList: widget.id,
-            mes: widget.mes,
+        child: ContainerColor(
+          widget: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10.0,
+              horizontal: 10,
+            ),
+            child: ListCategorys(
+              idList: widget.id,
+              mes: widget.mes,
+            ),
           ),
         ),
       ),

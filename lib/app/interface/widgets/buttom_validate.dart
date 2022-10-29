@@ -11,11 +11,11 @@ class ButtomValidate extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        width: 77,
-        height: 56,
+        width: 80,
+        height: 76,
         decoration: BoxDecoration(
-          color: const Color(0xFF4A9777),
-          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xFF158B49),
+          borderRadius: BorderRadius.circular(30),
         ),
         child: Icon(
           icon,

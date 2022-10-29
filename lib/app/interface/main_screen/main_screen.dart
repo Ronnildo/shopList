@@ -1,7 +1,10 @@
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shoplist/app/interface/main_screen/listar_listas.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:shoplist/app/interface/widgets/buttom_validate.dart';
+import 'package:shoplist/app/interface/widgets/container_color.dart';
 
 import 'popup_list.dart';
 
@@ -55,6 +58,14 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  openDialog() {
+    showDialog(
+        context: context,
+        builder: (context) => PopUpInsertList(
+              id: androidid ?? "Null",
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,29 +88,17 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       backgroundColor: const Color(0xFF89CDB2),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: ListarListas(
-          androidId: androidid ?? "Null",
+      body: ContainerColor(
+        widget: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: ListarListas(
+            androidId: androidid ?? "Null",
+          ),
         ),
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 30.0,
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (context) => PopUpInsertList(
-                      id: androidid ?? "Null",
-                    ));
-          },
-          backgroundColor: const Color(0xFF4A9777),
-          elevation: 10,
-          hoverElevation: 50,
-          child: const Icon(Icons.add),
-        ),
+      floatingActionButton: ButtomValidate(
+        icon: FontAwesomeIcons.plus,
+        ontap: openDialog,
       ),
     );
   }
@@ -136,24 +135,13 @@ class _MainScreenLandspaceState extends State<MainScreenLandspace> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Padding(
-          padding: EdgeInsets.only(bottom: 16.0),
-          child: Text(
-            'Listas De Compra',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 40,
-            ),
-          ),
+        title: Text(
+          'Listas De Compra',
+          style: Theme.of(context).textTheme.headline2,
         ),
-        centerTitle: true,
+        leading: Icon(Icons.abc),
         backgroundColor: const Color(0xFF4A9777),
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-          size: 22,
-        ),
       ),
-      backgroundColor: const Color(0xFF89CDB2),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: ListarListas(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:splash_screen_view/SplashScreenView.dart';
+import 'package:shoplist/app/interface/home_screen/home_screen.dart';
 
-import 'main_screen/main_screen.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({Key? key}) : super(key: key);
@@ -14,15 +14,13 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-      navigateRoute: const MainScreen(),
+      navigateRoute: const HomeScreen(),
       duration: 5000,
       imageSize: 260,
       imageSrc: "assets/images/shopping_app.png",
       text: "ShopList",
       textType: TextType.ColorizeAnimationText,
-      textStyle: const TextStyle(
-        fontSize: 80.0,
-      ),
+      textStyle: const TextStyle(fontSize: 80.0, fontWeight: FontWeight.w700),
       colors: const [
         Colors.black,
         Colors.grey,
