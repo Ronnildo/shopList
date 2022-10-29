@@ -105,6 +105,9 @@ class _PopUpInsertListState extends State<PopUpInsertList> {
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                 labelText: 'Mês',
+                labelStyle: TextStyle(
+                  fontSize: 20,
+                ),
                 border: OutlineInputBorder(),
                 fillColor: Color(0xFFA6BAB2),
                 focusColor: Color(0xFF44AA99),

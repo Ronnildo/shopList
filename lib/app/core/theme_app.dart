@@ -18,33 +18,46 @@ class TemaApp {
   );
 
   static const TextTheme _temaTexto = TextTheme(
-    headline2: TextStyle(
+    headline1: TextStyle(
+      // Estilo para Título Fora AppBar
       fontSize: 60,
-      fontWeight: FontWeight.w900,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+      fontFamily: "Poppins",
+    ),
+    headline2: TextStyle(
+      // Estilo de Título dentro da AppBar
+      fontSize: 40,
+      fontWeight: FontWeight.w700,
       color: Colors.black,
       fontFamily: "Poppins",
     ),
     headline3: TextStyle(
+      // Estilo Ppara título do Card
       fontSize: 40,
-      fontWeight: FontWeight.w800,
+      fontWeight: FontWeight.w700,
       fontFamily: "Poppins",
       color: Color(0xFFA6BAB2),
     ),
     headline4: TextStyle(
+      // Estilo para o subtitilo
       fontSize: 34,
       fontWeight: FontWeight.w700,
       fontFamily: "Poppins",
       color: Colors.black,
     ),
     headline5: TextStyle(
+      // Estilo para categoria do card na main
       fontSize: 28,
       fontWeight: FontWeight.w600,
       fontFamily: "Poppins",
       color: Color(0xFFA6BAB2),
     ),
     headline6: TextStyle(
+      // Estilo para link texto
       fontSize: 20,
-      fontWeight: FontWeight.w500,
+      color: Colors.white,
+      fontWeight: FontWeight.w600,
     ),
     bodyText1: TextStyle(
       fontSize: 40,
@@ -53,6 +66,7 @@ class TemaApp {
       fontFamily: "Poppins",
     ),
     subtitle2: TextStyle(
+      // Estilo de título do popUp
       fontSize: 40,
       fontWeight: FontWeight.w700,
       fontFamily: "Poppins",
@@ -64,15 +78,18 @@ class TemaApp {
       fontFamily: "Poppins",
     ),
     button: TextStyle(
+      // Estilo texto do botão
       fontSize: 28,
       fontWeight: FontWeight.w700,
       color: Colors.white,
       fontFamily: "Poppins",
     ),
     overline: TextStyle(
-      fontSize: 10,
+      // Estilo do texto
+      fontSize: 20,
       fontWeight: FontWeight.w200,
       fontFamily: "Poppins",
+      color: Colors.white,
     ),
   );
 

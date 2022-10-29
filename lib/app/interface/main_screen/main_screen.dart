@@ -137,7 +137,7 @@ class _MainScreenLandspaceState extends State<MainScreenLandspace> {
       appBar: AppBar(
         title: Text(
           'Listas De Compra',
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.headline2,
         ),
         leading: Icon(Icons.abc),
         backgroundColor: const Color(0xFF4A9777),

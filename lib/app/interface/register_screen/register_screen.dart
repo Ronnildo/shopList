@@ -121,12 +121,9 @@ class _RegiterScreenState extends State<RegisterScreen> {
                       ),
                       GestureDetector(
                         onTap: _register,
-                        child: const Text(
+                        child: Text(
                           "login?",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                       ),
                     ],

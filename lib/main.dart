@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shoplist/app/core/theme_app.dart';
+import 'package:shoplist/app/interface/home_screen/home_screen.dart';
 
 import 'app/interface/splash_screen.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Organizador de Compras',
-      home: const InitialScreen(),
+      home: const HomeScreen(),
       // routes: {},
       theme: TemaApp.tema,
     );

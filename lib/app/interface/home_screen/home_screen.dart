@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'ShopList',
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   const Icon(
                     Icons.calendar_month,
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Text(
                 'Your personal shopping organizer',
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.headline4,
               ),
               const DropShadow(
                 blurRadius: 5,

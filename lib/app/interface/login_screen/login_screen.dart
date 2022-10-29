@@ -99,12 +99,9 @@ class _LoginScreeenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(top: 20.0),
                   child: GestureDetector(
                     onTap: _register,
-                    child: const Text(
+                    child: Text(
                       "Create account? register?",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
                 )
